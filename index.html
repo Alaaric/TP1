@@ -4,27 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.png">
     <title>Convertisseur de devise</title>
 </head>
 
 <body>
     <main id="app">
-        <form action="">
+        <form action="" onsubmit="return false" id="convertionForm">
             <label for="amount">entrez le montant</label>
-            <input type="text" name="amount" id="amount">
+            <input type="number" name="amount" id="amount">
             <label for="currencyToConvert">vorte devise</label>
             <select name="currencyToConvert" id="currencyToConvert">
-                <option value="€">€</option>
-                <option value="$">$</option>
             </select>
-            <p>resultat:</p>
             <div>votre résultat</div>
-            <label for="conertedCurrency"></label>
-            <select name="conertedCurrency" id="conertedCurrency">
-                <option value="€">€</option>
-                <option value="$">$</option>
+            <label for="convertedCurrency"></label>
+            <select name="convertedCurrency" id="convertedCurrency">
             </select>
+            <input type="submit" value="convertir">
         </form>
+        <p>resultat:</p>
+        <div id="result"></div>
     </main>
     <script type="module" src="/main.js"></script>
 </body>
