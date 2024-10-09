@@ -1,4 +1,4 @@
-import './style.css';
+import './style.scss';
 import axios from "axios";
 
 
@@ -56,8 +56,9 @@ const handleconvert = async () => {
   const resultDiv = document.getElementById("result");
   const amount = document.getElementById("amount").value;
   const ratio = await getCurrenciesRatio(targetCurrency, sourceCurrency);
+  let finalValue = Math.round(ratio[targetCurrency] * amount)
 
-  resultDiv.innerText = ratio[targetCurrency] * amount;
+  resultDiv.innerText = `${finalValue} ${targetCurrency}`;
 
 };
 
