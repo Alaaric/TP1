@@ -6,7 +6,9 @@ const getCurrencies = async () => {
 
   try {
     const response = await axios.get(`https://api.freecurrencyapi.com/v1/currencies?apikey=${import.meta.env.VITE_API_KEY}`);
-    return response.data.data;
+    const data = response.data.data
+    localStorage.setItem('apiDataResult', JSON.stringify(data))
+    return data;
   } catch (error) {
     return console.error('Error:', error);
   }
@@ -17,7 +19,19 @@ const selectConverted = document.getElementById("convertedCurrency")
 
 
 const mapCurrencies = async (select) => {
-  const currencies = Object.values(await getCurrencies());
+  let currencies
+  const storedApiResult = localStorage.getItem('apiDataResult')
+  if (storedApiResult) {
+    const parsedApiData = JSON.parse(storedApiResult);
+
+    currencies = Object.values(parsedApiData)
+
+  } else {
+
+    currencies = Object.values(await getCurrencies());
+
+  }
+  
   currencies.forEach(currency => {
     const option = new Option(currency.symbol, currency.code)
     select.appendChild(option)
@@ -56,7 +70,7 @@ const handleconvert = async () => {
   const resultDiv = document.getElementById("result");
   const amount = document.getElementById("amount").value;
   const ratio = await getCurrenciesRatio(targetCurrency, sourceCurrency);
-  let finalValue = Math.round((ratio[targetCurrency] * amount + Number.EPSILON)  * 100) / 100
+  let finalValue = Math.round((ratio[targetCurrency] * amount + Number.EPSILON) * 100) / 100
 
   resultDiv.innerText = `${finalValue} ${targetCurrency}`;
 
@@ -70,19 +84,19 @@ form.addEventListener("submit", (e) => {
 
 let checkbox = document.querySelector('input[name=mode]');
 
-checkbox.addEventListener('change', function() {
-    if(this.checked) {
-        trans()
-        document.documentElement.setAttribute('data-theme', 'dark')
-    } else {
-        trans()
-        document.documentElement.setAttribute('data-theme', 'light')
-    }
+checkbox.addEventListener('change', function () {
+  if (this.checked) {
+    trans()
+    document.documentElement.setAttribute('data-theme', 'dark')
+  } else {
+    trans()
+    document.documentElement.setAttribute('data-theme', 'light')
+  }
 })
 
 let trans = () => {
-    document.documentElement.classList.add('transition');
-    window.setTimeout(() => {
-        document.documentElement.classList.remove('transition');
-    }, 1000)
+  document.documentElement.classList.add('transition');
+  window.setTimeout(() => {
+    document.documentElement.classList.remove('transition');
+  }, 1000)
 }
