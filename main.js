@@ -1,6 +1,20 @@
-import "./style.scss";
+import "./styles.scss";
 import axios from "axios";
 
+// global variables declaration
+const selectToConvert = document.getElementById("currencyToConvert");
+const selectConverted = document.getElementById("convertedCurrency");
+const form = document.getElementById("convertionForm");
+const resultDiv = document.getElementById("result");
+const keyToInputIdMap = {
+  amount: "amount",
+  sourceCurrency: "currencyToConvert",
+  targetCurrency: "convertedCurrency",
+  displayedResult: "result",
+};
+let checkbox = document.querySelector("input[name=mode]");
+
+// get all currencies from API and populate dynamically options tags in both select tags with call result
 const getCurrencies = async () => {
   try {
     const response = await axios.get(
@@ -15,9 +29,6 @@ const getCurrencies = async () => {
     return console.error("Error:", error);
   }
 };
-
-const selectToConvert = document.getElementById("currencyToConvert");
-const selectConverted = document.getElementById("convertedCurrency");
 
 const mapCurrencies = async (select) => {
   let currencies;
@@ -39,33 +50,8 @@ const mapCurrencies = async (select) => {
 mapCurrencies(selectToConvert);
 mapCurrencies(selectConverted);
 
-const getCurrenciesRatio = async (targetCurrency, sourceCurrency) => {
-  try {
-    const response = await axios.get(
-      `https://api.freecurrencyapi.com/v1/latest?apikey=${
-        import.meta.env.VITE_API_KEY
-      }&currencies=${targetCurrency}&base_currency=${sourceCurrency}`
-    );
-    return response.data.data;
-  } catch (error) {
-    return console.error("Error:", error);
-  }
-};
-
-const getUserCurrency = (selected) => {
-  return selected.value;
-};
-
-const form = document.getElementById("convertionForm");
-const resultDiv = document.getElementById("result");
-const keyToInputIdMap = {
-  amount: "amount",
-  sourceCurrency: "currencyToConvert",
-  targetCurrency: "convertedCurrency",
-  displayedResult: "result",
-};
-
-const fillElementsFromLocalStorage = (mapping) => {
+// populate inputs fields from localStorage if not empty
+(function fillElementsFromLocalStorage(mapping) {
   Object.keys(mapping).forEach((key) => {
     const value = localStorage.getItem(key);
     if (value !== null) {
@@ -78,10 +64,9 @@ const fillElementsFromLocalStorage = (mapping) => {
       }
     }
   });
-};
+})(keyToInputIdMap);
 
-fillElementsFromLocalStorage(keyToInputIdMap);
-
+// convert the amout of a currency to another, display result and store all datas used and result in localStorage
 const handleconvert = async (resultDiv) => {
   let targetCurrency = getUserCurrency(selectConverted);
   localStorage.setItem("targetCurrency", targetCurrency);
@@ -101,14 +86,31 @@ const handleconvert = async (resultDiv) => {
   resultDiv.innerText = displayedResult;
 };
 
+const getUserCurrency = (selected) => {
+  return selected.value;
+};
+
 form.addEventListener("submit", (e) => {
   e.preventDefault;
 
   handleconvert(resultDiv);
 });
 
-let checkbox = document.querySelector("input[name=mode]");
+//API call to get exchange rate between two currencies
+const getCurrenciesRatio = async (targetCurrency, sourceCurrency) => {
+  try {
+    const response = await axios.get(
+      `https://api.freecurrencyapi.com/v1/latest?apikey=${
+        import.meta.env.VITE_API_KEY
+      }&currencies=${targetCurrency}&base_currency=${sourceCurrency}`
+    );
+    return response.data.data;
+  } catch (error) {
+    return console.error("Error:", error);
+  }
+};
 
+// light/dark theme switch logic and store this information in localStorage + apply it
 checkbox.addEventListener("change", function () {
   if (this.checked) {
     transition();
@@ -128,12 +130,10 @@ let transition = () => {
   }, 1000);
 };
 
-function applyThemeFromLocalStorage() {
+(function applyThemeFromLocalStorage() {
   const savedTheme = localStorage.getItem("data-theme");
   if (savedTheme) {
     document.documentElement.setAttribute("data-theme", savedTheme);
     checkbox.checked = savedTheme === "dark" && true;
   }
-}
-
-applyThemeFromLocalStorage();
+})();
