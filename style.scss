@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 * {
   box-sizing: border-box;
 }
 
 html {
-
   &.transition,
   &.transition *,
   &.transition *:before,
@@ -14,7 +13,7 @@ html {
     transition-delay: 0;
   }
 
-  &[data-theme='dark'] {
+  &[data-theme="dark"] {
     --font-color: hsla(0, 0%, 100%, 0.8);
     --bg-main-color: rgb(35, 35, 35);
     --secondary-bg-color: rgb(80, 80, 80);
@@ -31,7 +30,7 @@ html {
   --bg-main-color: rgb(255, 255, 255);
   --secondary-bg-color: rgb(223, 223, 223);
   --main-color: rgba(179, 132, 201, 1);
-  --secondary-color: rgba(57, 31, 91, .84);
+  --secondary-color: rgba(57, 31, 91, 0.84);
   --shadow-main-color: rgba(179, 132, 201, 0.4);
   --shadow-secondary-color: rgba(57, 31, 91, 0.24);
   --hover-color-1: rgb(179, 132, 201);
@@ -70,9 +69,9 @@ html {
           visibility: hidden;
           display: flex;
 
-          &:checked+.label-toggle {
+          &:checked + .label-toggle {
             background: var(--secondary-color);
-            
+
             &:after {
               left: calc(100% - 5px);
               -webkit-transform: translateX(-100%);
@@ -100,7 +99,7 @@ html {
           position: relative;
 
           &::after {
-            content: '';
+            content: "";
             background: var(--font-color);
             width: 20px;
             height: 20px;
@@ -133,7 +132,8 @@ html {
         .number-input {
           border: none;
           border-radius: 10px;
-          box-shadow: var(--shadow-secondary-color) 0 4px 4px, var(--shadow-main-color) 0 16px 20px;
+          box-shadow: var(--shadow-secondary-color) 0 4px 4px,
+            var(--shadow-main-color) 0 16px 20px;
           text-align: center;
           width: 25%;
           height: 2rem;
@@ -162,12 +162,15 @@ html {
           max-width: 12rem;
           padding: 1rem 4rem 1rem 1rem;
           background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
-            linear-gradient(to left, var(--secondary-color) 3em, var(--main-color) 3em);
+            linear-gradient(
+              to left,
+              var(--secondary-color) 3em,
+              var(--main-color) 3em
+            );
           color: var(--font-color);
           border-radius: 0.25em;
           box-shadow: 0 0 1em 0 var(--shadow-secondary-color);
           cursor: pointer;
-
 
           &:focus {
             outline: none;
@@ -177,7 +180,6 @@ html {
             color: var(--font-color);
             background-color: var(--shadow-main-color);
             max-width: 2px;
-
           }
         }
 
@@ -197,26 +199,35 @@ html {
           width: 50%;
           height: 10%;
           align-items: center;
-          background-image: linear-gradient(var(--main-color), var(--secondary-color) 50%);
+          background-image: linear-gradient(
+            var(--main-color),
+            var(--secondary-color) 50%
+          );
           border-radius: 42px;
           border-width: 0;
-          box-shadow: var(--shadow-secondary-color) 0 2px 2px, var(--shadow-main-color) 0 8px 12px;
-          color: #FFFFFF;
+          box-shadow: var(--shadow-secondary-color) 0 2px 2px,
+            var(--shadow-main-color) 0 8px 12px;
+          color: #ffffff;
           cursor: pointer;
           display: flex;
           font-size: 18px;
           font-weight: 700;
           justify-content: center;
-          letter-spacing: .04em;
+          letter-spacing: 0.04em;
           line-height: 16px;
           margin: 0 0 5px 0;
           text-align: center;
           text-decoration: none;
-          text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px, rgba(255, 255, 255, 0.2) 0 0 12px, rgba(57, 31, 91, 0.6) 1px 1px 4px, rgba(57, 31, 91, 0.32) 4px 4px 16px;
+          text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,
+            rgba(255, 255, 255, 0.2) 0 0 12px, rgba(57, 31, 91, 0.6) 1px 1px 4px,
+            rgba(57, 31, 91, 0.32) 4px 4px 16px;
           vertical-align: baseline;
 
           &:hover {
-            background-image: linear-gradient(var(--hover-color-1), var(--hover-color-2) 50%);
+            background-image: linear-gradient(
+              var(--hover-color-1),
+              var(--hover-color-2) 50%
+            );
           }
         }
       }
@@ -244,7 +255,8 @@ html {
           overflow: auto;
           border: none;
           border-radius: 10px;
-          box-shadow: var(--shadow-secondary-color) 0 4px 4px, var(--shadow-main-color) 0 16px 20px;
+          box-shadow: var(--shadow-secondary-color) 0 4px 4px,
+            var(--shadow-main-color) 0 16px 20px;
 
           p {
             color: var(--font-color);

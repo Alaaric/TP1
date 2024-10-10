@@ -1,40 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="favicon.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.png" />
     <title>Convertisseur de devise</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <main id="app" class="app">
-        <div class="toggle-btn-wrapper">
-            <input class="container-toggle" type="checkbox" id="switch" name="mode">
-            <label for="switch" class="label-toggle">Toggle</label>
+      <div class="toggle-btn-wrapper">
+        <input
+          class="container-toggle"
+          type="checkbox"
+          id="switch"
+          name="mode"
+        />
+        <label for="switch" class="label-toggle">Toggle</label>
+      </div>
+      <h1>Convertisseur de devise</h1>
+      <form
+        action=""
+        onsubmit="return false"
+        id="convertionForm"
+        class="convert-form"
+      >
+        <label for="amount"
+          >Montant que vous souhaitez convertir:
+          <input
+            type="number"
+            name="amount"
+            id="amount"
+            max="100000000000"
+            class="number-input"
+          />
+        </label>
+        <label for="currencyToConvert"
+          >Votre devise source:
+          <select
+            name="currencyToConvert"
+            id="currencyToConvert"
+            class="select-input"
+          ></select>
+        </label>
+        <label for="convertedCurrency"
+          >Votre devise cible:
+          <select
+            name="convertedCurrency"
+            id="convertedCurrency"
+            class="select-input"
+          ></select>
+        </label>
+        <input type="submit" value="convertir" class="submit-btn" />
+      </form>
+      <section class="result-area">
+        <h2>Resultat:</h2>
+        <div class="result-field">
+          <p id="result"></p>
         </div>
-            <h1>Convertisseur de devise</h1>
-        <form action="" onsubmit="return false" id="convertionForm" class="convert-form">
-            <label for="amount">Montant que vous souhaitez convertir:
-                <input type="number" name="amount" id="amount" max="100000000000" class="number-input">
-            </label>
-            <label for="currencyToConvert">Votre devise source:
-                <select name="currencyToConvert" id="currencyToConvert" class="select-input"></select>
-            </label>
-            <label for="convertedCurrency">Votre devise cible:
-                <select name="convertedCurrency" id="convertedCurrency" class="select-input"></select>
-            </label>
-            <input type="submit" value="convertir" class="submit-btn">
-        </form>
-        <section class="result-area">
-            <h2>Resultat:</h2>
-            <div class="result-field">
-                <p id="result"></p>
-            </div>
-        </section>
+      </section>
     </main>
     <script type="module" src="/main.js"></script>
-</body>
-
+  </body>
 </html>
