@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "scss": "sass --watch styles.scss:dist/styles.css",
+    "start": "concurrently \"npm run dev\" \"npm run scss\"",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -25,5 +27,8 @@
     "dotenv": "^16.4.5",
     "sass": "^1.79.4",
     "vite": "^5.4.8"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
   }
 }
