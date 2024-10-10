@@ -1,4 +1,4 @@
-import './style.css';
+import './style.scss';
 import axios from "axios";
 
 
@@ -56,8 +56,9 @@ const handleconvert = async () => {
   const resultDiv = document.getElementById("result");
   const amount = document.getElementById("amount").value;
   const ratio = await getCurrenciesRatio(targetCurrency, sourceCurrency);
+  let finalValue = Math.round((ratio[targetCurrency] * amount + Number.EPSILON)  * 100) / 100
 
-  resultDiv.innerText = ratio[targetCurrency] * amount;
+  resultDiv.innerText = `${finalValue} ${targetCurrency}`;
 
 };
 
@@ -67,3 +68,21 @@ form.addEventListener("submit", (e) => {
   handleconvert();
 })
 
+let checkbox = document.querySelector('input[name=mode]');
+
+checkbox.addEventListener('change', function() {
+    if(this.checked) {
+        trans()
+        document.documentElement.setAttribute('data-theme', 'dark')
+    } else {
+        trans()
+        document.documentElement.setAttribute('data-theme', 'light')
+    }
+})
+
+let trans = () => {
+    document.documentElement.classList.add('transition');
+    window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+    }, 1000)
+}

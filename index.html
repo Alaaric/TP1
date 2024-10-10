@@ -9,21 +9,30 @@
 </head>
 
 <body>
-    <main id="app">
-        <form action="" onsubmit="return false" id="convertionForm">
-            <label for="amount">entrez le montant</label>
-            <input type="number" name="amount" id="amount">
-            <label for="currencyToConvert">vorte devise</label>
-            <select name="currencyToConvert" id="currencyToConvert">
-            </select>
-            <div>votre résultat</div>
-            <label for="convertedCurrency"></label>
-            <select name="convertedCurrency" id="convertedCurrency">
-            </select>
-            <input type="submit" value="convertir">
+    <main id="app" class="app">
+        <div class="toggle-btn-wrapper">
+            <input class="container-toggle" type="checkbox" id="switch" name="mode">
+            <label for="switch" class="label-toggle">Toggle</label>
+        </div>
+            <h1>Convertisseur de devise</h1>
+        <form action="" onsubmit="return false" id="convertionForm" class="convert-form">
+            <label for="amount">Montant que vous souhaitez convertir:
+                <input type="number" name="amount" id="amount" max="100000000000" class="number-input">
+            </label>
+            <label for="currencyToConvert">Votre devise source:
+                <select name="currencyToConvert" id="currencyToConvert" class="select-input"></select>
+            </label>
+            <label for="convertedCurrency">Votre devise cible:
+                <select name="convertedCurrency" id="convertedCurrency" class="select-input"></select>
+            </label>
+            <input type="submit" value="convertir" class="submit-btn">
         </form>
-        <p>resultat:</p>
-        <div id="result"></div>
+        <section class="result-area">
+            <h2>Resultat:</h2>
+            <div class="result-field">
+                <p id="result">782775678,6868</p>
+            </div>
+        </section>
     </main>
     <script type="module" src="/main.js"></script>
 </body>
