@@ -58,10 +58,14 @@ html {
       justify-content: space-around;
       margin-top: 1rem;
       border-radius: 10px;
-      min-height: 35rem;
+      min-height: 38rem;
+      position: relative;
+      padding: 1rem 0;
 
       .toggle-btn-wrapper {
         width: 100%;
+        position: absolute;
+        top: 0;
 
         .container-toggle {
           height: 0;
