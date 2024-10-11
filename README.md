@@ -1,16 +1,20 @@
 # TP1
 
-## Desprition
+## Description
 
-### This is a very simple vanilla Js front only project without any Architecture.
+### This is a very simple vanilla JS front only project without any Architecture.
 
 ### This application aim to be a currencies values converter based on an API
 
+## Prerequisites
+
+### Get a free API key https://freecurrencyapi.com/ and put it in your .env file
+
 ## commands
 
-### `npm run start` to run project in local node environnement + compile and watch sass.
+### `npm run start` to run project in local node environment + compile and watch sass.
 
-### `npm run dev` to run project in local node environnement.
+### `npm run dev` to run project in local node environment.
 
 ### `npm run sass` to compile and watch sass.
 
